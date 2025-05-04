@@ -5,7 +5,7 @@ provider "aws" {
 resource "random_uuid" "uuid" {}
 
 resource "aws_s3_bucket" "app_bucket" {
-  bucket = "${var.prefix}-${var.environment}-${var.bucket_name}"
+  bucket = "${var.prefix}-${var.environment}-${var.bucket_name}-${random_uuid.uuid.result}"
 
   tags = {
     Name        = "${var.prefix}-${var.environment}-${var.bucket_name}-${random_uuid.uuid.result}"
