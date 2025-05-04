@@ -2,11 +2,13 @@ provider "aws" {
   region = var.region
 }
 
+resource "random_uuid" "uuid" {}
+
 resource "aws_s3_bucket" "app_bucket" {
   bucket = "${var.prefix}-${var.environment}-${var.bucket_name}"
 
   tags = {
-    Name        = "${var.prefix}-${var.environment}-${var.bucket_name}"
+    Name        = "${var.prefix}-${var.environment}-${var.bucket_name}-${random_uuid.uuid.result}"
     Environment = var.environment
     Terraform   = "true"
     Component   = var.component_name
