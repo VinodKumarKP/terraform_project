@@ -12,6 +12,7 @@ resource "aws_s3_bucket" "app_bucket" {
     Environment = var.environment
     Terraform   = "true"
     Component   = var.component_name
+    rerun       = 1
   }
 }
 
